@@ -3,7 +3,36 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from bs4 import BeautifulSoup
 import requests
+import re
 # Create your views here.
+
+
+def bubbleSort(arr):
+    n = len(arr)
+    
+    swapped = False
+   
+    for i in range(n-1):
+       
+        for j in range(0, n-i-1):
+            k = re.sub('[^.0-9]', '', arr[j][0])
+            l = re.sub('[^.0-9]', '', arr[j+1][0])
+            if k > l:
+                swapped = True
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+         
+        if not swapped:
+            
+            return
+    
+
+    print("After change ")
+    print(arr)
+    return arr
+
+
+
+
 
 
 def MainView(request):
@@ -48,12 +77,15 @@ def search(request):
         # dun = dunnes(keyword,headers,cookies)
         superval = supervalue(keyword,headers)
         tesco_data = tesco(keyword,headers)
-
+        
         print(superval)
+        superval = bubbleSort(superval)
         print(tesco_data)
+        tesco_data = bubbleSort(tesco_data)
         return render(request,"home/search.html",context={'superval':superval,'tesco':tesco_data})
 
-    return HttpResponse('Done')
+    
+
 
 def defaultcarts(request):
     headers = {

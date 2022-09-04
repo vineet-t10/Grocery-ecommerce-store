@@ -14,12 +14,25 @@
     </div> -->
 <!-- </form> -->
 {% csrf_token %}
-<div class="container-xl pt-3">
+<div class="input-group">
+    <form action="{% url 'search-page' %}" method="post">
+        {% csrf_token %}
     <div class="form-outline">
-        <input type="text" id="formControlLg" class="form-control form-control-lg" />
-        <label class="form-label" for="formControlLg">Search</label>
+        <input type="search" name="keyword" class="form-control" />
+        <label class="form-label" for="form1">Search</label>
     </div>
+        <input type="submit" class="btn btn-primary" value="search">
+        <i class="fas fa-search"></i>
+    </form>
+    
 </div>
+<style>
+    .form-outline{
+        width: 400%;
+        float: left;
+        position: relative;
+    }
+</style>
 
 <section class="section-products">
     <div class="container">
@@ -48,17 +61,19 @@
             <!-- Single Product -->
             <div class="col-md-6 col-lg-4 col-xl-3">
                 <div id="product-1" class="single-product">
-                    <div class="part-1" style="background-image: url('{{ j.2 }}')!important;">
+                    <div class="part-1" style="background: url('{{ j.2 }}') no-repeat !important; ">
                         <ul>
-                            <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-expand"></i></a></li>
+                            
                         </ul>
                     </div>
                     <div class="part-2">
                         <h3 class="product-title">{{ j.1 }}</h3>
 
                         <h4 class="product-price">{{ j.0 }}</h4>
+
+                    </div>
+                    <div class="mb-3">
+                        <a href="" class="btn btn-info">Add to cart</a>
                     </div>
                 </div>
             </div>
@@ -67,7 +82,9 @@
             {% endfor %}
         </div>
 
-        <p>tesco</p>
+        <div class="p-3 m-3 text-center align-items-center">
+            <a class="h1 text-muted"> Tesco </a>
+        </div>
         <div class="row">
             {% for i in tesco %}
 
@@ -75,11 +92,9 @@
             <!-- Single Product -->
             <div class="col-md-6 col-lg-4 col-xl-3">
                 <div id="product-1" class="single-product">
-                    <div class="part-1" style="background-image: url('{{ j.2 }}')!important;">
+                    <div class="part-1" style="background: url('{{ j.2 }}') no-repeat !important;">
                         <ul>
-                            <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-expand"></i></a></li>
+                            
                         </ul>
                     </div>
                     <div class="part-2">
@@ -87,6 +102,7 @@
 
                         <h4 class="product-price">{{ j.0 }}</h4>
                     </div>
+                    
                 </div>
             </div>
             <!-- Single Product -->
