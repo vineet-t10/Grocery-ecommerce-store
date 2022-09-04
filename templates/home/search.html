@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load myfilters %}
+{% block content %}
+
+<section class="section-products">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="header">
+                    <h3>All Product</h3>
+                    <h2>Popular Products</h2>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+        {% for j in superval %}
+        
+            
+            <!-- Single Product -->
+            <div class="cards-wrapper col-md-6 col-lg-4 col-xl-3">
+                <div id="product-1" class="single-product">
+                    <div class="part-1" style="background: url('{{ j.2 }}') no-repeat center  !important; ">
+                        <ul>
+                            <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                            <li><a href="#"><i class="fas fa-heart"></i></a></li>
+                            <li><a href="{{ j.2 }}"><i class="fas fa-expand"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="part-2">
+                        <h3 class="carousel-caption d-none d-md-block product-title" style="color: #000 !important ;">{{ j.1 }}</h3>
+                        
+                        <h4 class="product-price">{{ j.0 }}</h4>
+                    </div>
+                    <a href="" class="btn btn-info">Add to cart</a>
+                </div>
+            </div>
+            <!-- Single Product -->
+            
+            {% endfor %}
+        </div>
+
+        
+        <div class="row">
+        {% for j in tesco %}
+        
+            
+            <!-- Single Product -->
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div id="product-1" class="single-product">
+                    <div class="part-1" style="background-image: url('{{ j.2 }}')!important;">
+                        <ul>
+                            <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                            <li><a href="#"><i class="fas fa-heart"></i></a></li>
+                            <li onclick="{{ 'j.2' }}"><a href=""><i class="fas fa-expand"></i></a></li >
+                        </ul>
+                    </div>
+                    <div class="part-2">
+                        <h3 class="product-title">{{ j.1 }}</h3>
+                        
+                        <h4 class="product-price">{{ j.0 }}</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Product -->
+            
+            {% endfor %}
+        </div>
+
+        <p>dunnes</p>
+        <div class="row">
+        {% for j in dunnes %}
+        
+            
+            <!-- Single Product -->
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div id="product-1" class="single-product">
+                    <div class="part-1" style="background-image: url('{{ j.2 }}')!important;">
+                        <ul>
+                            <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                            <li><a href="#"><i class="fas fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fas fa-expand"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="part-2">
+                        <h3 class="product-title">{{ j }}</h3>
+                        
+                        <h4 class="product-price">{{ j }}</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Product -->
+            
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

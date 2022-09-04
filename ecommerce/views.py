@@ -36,6 +36,7 @@ def MainView(request):
 
 def search(request):
     if request.method == 'POST':
+        print("Entered here")
         cookies = dict(BCPermissionLevel='PERSONAL')
         headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.84 Safari/537.36',
@@ -44,11 +45,15 @@ def search(request):
         }
         keyword = str(request.POST.get('keyword'))
         print(keyword.lower())
-        dun = dunnes(keyword,headers,cookies)
+        # dun = dunnes(keyword,headers,cookies)
         superval = supervalue(keyword,headers)
         tesco_data = tesco(keyword,headers)
 
+        print(superval)
+        print(tesco_data)
+        return render(request,"home/search.html",context={'superval':superval,'tesco':tesco_data})
 
+    return HttpResponse('Done')
 
 def defaultcarts(request):
     headers = {
@@ -123,3 +128,6 @@ def dunnes(keyword,headers):
 #     print(len(result))
 #     for i in result:
 #         print(i)
+
+def carts(request):
+    return HttpResponse("Reached here")
