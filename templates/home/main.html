@@ -17,17 +17,17 @@
 <div class="input-group">
     <form action="{% url 'search-page' %}" method="post">
         {% csrf_token %}
-    <div class="form-outline">
-        <input type="search" name="keyword" class="form-control" />
-        <label class="form-label" for="form1">Search</label>
-    </div>
+        <div class="form-outline">
+            <input type="search" name="keyword" class="form-control" />
+            <label class="form-label" for="form1">Search</label>
+        </div>
         <input type="submit" class="btn btn-primary" value="search">
         <i class="fas fa-search"></i>
     </form>
-    
+
 </div>
 <style>
-    .form-outline{
+    .form-outline {
         width: 400%;
         float: left;
         position: relative;
@@ -59,24 +59,26 @@
 
             {% for j in i %}
             <!-- Single Product -->
-            <div class="col-md-6 col-lg-4 col-xl-3">
-                <div id="product-1" class="single-product">
-                    <div class="part-1" style="background: url('{{ j.2 }}') no-repeat !important; ">
-                        <ul>
-                            
-                        </ul>
-                    </div>
-                    <div class="part-2">
-                        <h3 class="product-title">{{ j.1 }}</h3>
+            
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div id="product-1" class="single-product">
+                        <div class="part-1" style="background: url('{{ j.2 }}') no-repeat !important; ">
+                            <ul>
 
-                        <h4 class="product-price">{{ j.0 }}</h4>
+                            </ul>
+                        </div>
+                        <div class="part-2">
+                            <h3 class="product-title" id="supervaldescription">{{ j.1 }}</h3>
 
-                    </div>
-                    <div class="mb-3">
-                        <a href="" class="btn btn-info">Add to cart</a>
+                            <h4 class="product-price" id="supervalprice">{{ j.0 }}</h4>
+
+                        </div>
+                        <div class="mb-3">
+                            <a href="{% url 'carts-page' j.0 j.1 j.2 %}" id="addtocartsuperval" class="btn btn-info">Add to cart</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            
             <!-- Single Product -->
             {% endfor %}
             {% endfor %}
@@ -94,7 +96,7 @@
                 <div id="product-1" class="single-product">
                     <div class="part-1" style="background: url('{{ j.2 }}') no-repeat !important;">
                         <ul>
-                            
+
                         </ul>
                     </div>
                     <div class="part-2">
@@ -102,7 +104,10 @@
 
                         <h4 class="product-price">{{ j.0 }}</h4>
                     </div>
-                    
+                    <div class="mb-3">
+                        <a id="addtocarttesco" class="btn btn-info">Add to cart</a>
+                    </div>
+
                 </div>
             </div>
             <!-- Single Product -->
@@ -113,4 +118,6 @@
 
     </div>
 </section>
+
+
 {% endblock %}

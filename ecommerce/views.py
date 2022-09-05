@@ -161,5 +161,7 @@ def dunnes(keyword,headers):
 #     for i in result:
 #         print(i)
 
-def carts(request):
+def carts(request,product):
+    print(product)
+     
     return HttpResponse("Reached here")
