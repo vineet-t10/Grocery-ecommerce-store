@@ -1,9 +1,11 @@
-from unicodedata import name
 from django.http import HttpResponse
 from django.shortcuts import render
 from bs4 import BeautifulSoup
+from .models import Product
 import requests
 import re
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 
@@ -25,16 +27,13 @@ def bubbleSort(arr):
             
             return
     
-
-    print("After change ")
-    print(arr)
     return arr
 
 
 
 
 
-
+@login_required
 def MainView(request):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.84 Safari/537.36',
@@ -52,11 +51,6 @@ def MainView(request):
         tesco_data.append(b)
         c = dunnes(i,headers)
         dun.append(c)
-
-    
-    print(dun)
-    
-        
 
 
     return render(request,"home/main.html",context={"superval":superval,"tesco":tesco_data,"dunnes":dun})
@@ -161,7 +155,23 @@ def dunnes(keyword,headers):
 #     for i in result:
 #         print(i)
 
-def carts(request,product):
-    print(product)
-     
-    return HttpResponse("Reached here")
+def cartpe(request,description,price,image):
+    print("Reached here")
+    print(description)
+    price = float(price.replace('€',''))
+    print(price)
+    print(image)
+    cart,created = Product.objects.get_or_create(user=request.user,name=description,price=price,image=image)
+    print(cart.name)
+    print(cart.price)
+    print(cart.image)
+
+    maincart = Product.objects.all()
+    return render(request,'home/cart2.html',context={'cart':maincart})
+
+def gotocart(request):
+    maincart = Product.objects.all()
+    return render(request,'home/cart2.html',context={'cart':maincart})
+    
+def placed(request):
+    return render(request,'home/placed.html')

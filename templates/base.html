@@ -38,7 +38,7 @@
             
           </div>
         </div> 
-        <span class="pr-9"><i class="fa-solid fa-cart-arrow-down"></i></span>
+        <a href="{% url 'cart' %}"><span class="pr-9"><i class="fa-solid fa-cart-arrow-down"></i></span></a>
         {% if request.user.is_authenticated %}
         <span>{{request.user}}</span>
         <a href="{% url 'logout' %}"><span class="pr-3 pl-9">Logout</span></a>

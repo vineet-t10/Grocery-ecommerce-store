@@ -74,7 +74,7 @@
 
                         </div>
                         <div class="mb-3">
-                            <a href="{% url 'carts-page' j.0 j.1 j.2 %}" id="addtocartsuperval" class="btn btn-info">Add to cart</a>
+                            <a href="{% url 'carts-page' description=j.1 price=j.0 image=j.2 %}" id="addtocartsuperval" class="btn btn-info">Add to cart</a>
                         </div>
                     </div>
                 </div>
@@ -105,10 +105,11 @@
                         <h4 class="product-price">{{ j.0 }}</h4>
                     </div>
                     <div class="mb-3">
-                        <a id="addtocarttesco" class="btn btn-info">Add to cart</a>
+                        <a href="{% url 'carts-page' description=j.1 price=j.0 image=j.2 %}" class="btn btn-info">Add to cart</a>
                     </div>
 
                 </div>
+
             </div>
             <!-- Single Product -->
             {% endfor %}
